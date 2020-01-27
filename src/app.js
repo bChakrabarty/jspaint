@@ -1,9 +1,19 @@
-
+//Ananta
+let  prevInfo= "Ananta"; 
+let toolsName="";
+var info="";
+let toolno=0;
 const default_magnification = 1;
 const default_tool = get_tool_by_name("Pencil");
 
-const default_canvas_width = 683;
-const default_canvas_height = 384;
+/*
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://Biswa:Ananta2525++@mango-nskfn.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+*/
+
+const default_canvas_width = 685;
+const default_canvas_height = 385;
 let my_canvas_width = default_canvas_width;
 let my_canvas_height = default_canvas_height;
 
@@ -346,6 +356,10 @@ $G.on("keydown", e => {
 			break;
 		}
 		switch(key){
+			case "B":
+				//Ananta
+				file_step();
+			break;
 			case "Z":
 				e.shiftKey ? redo() : undo();
 			break;
@@ -591,6 +605,13 @@ const update_palette_from_theme = ()=> {
 $G.on("theme-load", update_palette_from_theme);
 update_palette_from_theme();
 
+//Ananta
+function returnTools() {
+	let ret= toolsName;
+	toolsName = toolno + info + ";\n";
+	return ret;
+}
+
 function to_canvas_coords({clientX, clientY}) {
 	const rect = canvas_bounding_client_rect;
 	const cx = clientX - rect.left;
@@ -690,6 +711,39 @@ function canvas_pointer_move(e){
 			}
 		}
 	}
+
+	//Ananta
+	var timestamp = Math.floor(Date.now()/1000);
+	info = selected_tool.name;
+	
+	if(info!=prevInfo){
+		toolno++;
+		console.log(info);
+		console.log(prevInfo);
+		info = info.concat(' ',timestamp);
+		sessionStorage.setItem(toolno, info);	
+
+		toolsName= toolsName + toolno + info + ";\n";
+		console.log(toolsName);
+		/*
+		try{
+
+			let str = ['Ananta', 'Chakrabarty']
+			blob = new Blob([str]);
+			const file_saver = saveAs(blob, `${'Ananta'}.txt`);
+			file_saver.onwriteend = () => {
+				// this won't fire in chrome
+				savedCallbackUnreliable();
+			};
+		} catch(ex){
+			console.log(ex);
+		}
+		*/
+
+	}
+
+	prevInfo=selected_tool.name;
+
 	selected_tools.forEach((selected_tool)=> {
 		tool_go(selected_tool);
 	});

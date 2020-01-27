@@ -535,6 +535,7 @@ function file_save(){
 	}
 	if(document_file_path){
 		// TODO: save as JPEG by default if the previously opened/saved file was a JPEG?
+		
 		return save_to_file_path(document_file_path, "PNG", (saved_file_path, saved_file_name) => {
 			saved = true;
 			document_file_path = saved_file_path;
@@ -543,6 +544,28 @@ function file_save(){
 		});
 	}
 	file_save_as();
+}
+
+//Ananta
+function file_step(){
+	
+	deselect();
+
+	console.log("Ananta");
+
+	let comment="";
+	do{
+		comment = prompt("Please add your comment!");
+		//console.log("No Name", comment);
+	}while(comment=="");
+
+	file_save();
+
+	let tools= returnTools();
+
+	let writeText = new Blob([tools, "\n\n", comment]);
+
+	const file_saver = saveAs(writeText, `${file_name}.txt`);
 }
 
 function file_save_as(){

@@ -25,6 +25,13 @@ window.menus = {
 			description: "Saves the active document.",
 		},
 		{
+			//Ananta
+			item: "&Save Step",
+			shortcut: "Ctrl+B",
+			action: ()=> { file_step(); },
+			description: "Ananta I love you!",
+		},
+		{
 			item: "Save &As",
 			shortcut: "Ctrl+Shift+S",
 			// in mspaint, no shortcut is listed; it supports F12 (but in a browser that opens the dev tools)
@@ -400,6 +407,8 @@ window.menus = {
 			action: ()=> { render_history_as_gif(); },
 			description: "Creates an animation from the document history.",
 		},
+		
+
 		// {
 		// 	item: "Render History as &APNG",
 		// 	// shortcut: "Ctrl+Shift+A",
@@ -535,7 +544,36 @@ window.menus = {
 			action: ()=> { window.open("https://www.paypal.me/IsaiahOdhner"); },
 			description: "Supports the project.",
 		},
+	], //Ananta
+	"&Save Step": [
+	{
+		//Ananta
+		item: "&Save Step",
+		shortcut: "Ctrl+B",
+		action: ()=> { file_step(); },
+		description: "Ananta I love you!",
+	}
 	],
+/*
+	"&Ananta": [
+		
+		action: ()=> {
+			// TODO: load new empty session in the same browser tab
+			let name = prompt("Enter the session name that will be used in the URL for sharing.");
+			if(typeof name == "string"){
+				name = name.trim();
+				if(name == ""){
+					show_error_message("The session name cannot be empty.");
+				}else if(name.match(/[./[\]#$]/)){
+					show_error_message("The session name cannot contain any of ./[]#$");
+				}else{
+					window.open(`${location.origin}${location.pathname}#session:${name}`);
+				}
+			}
+		
+	],
+	*/
+
 };
 
 })();

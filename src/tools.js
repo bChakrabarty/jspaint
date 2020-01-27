@@ -922,7 +922,8 @@ window.tools = [{
 		}
 	},
 	$options: $ChooseShapeStyle()
-}];
+}, 
+];
 
 /* eslint-enable no-restricted-syntax */
 
